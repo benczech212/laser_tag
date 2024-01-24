@@ -2,7 +2,8 @@ import time
 import digitalio
 import board
 import threading
-
+import os
+import subprocess
 sensor_pin = board.D5
 ir_blaster_pin = board.D6
 trigger_bin = board.D13
@@ -185,14 +186,15 @@ class Gun:
                 self.fire()
             else: pass
             
-    
+def play_sound():
+    # use command sudo aplay "$file" to play sound
+    file = "sounds/shot.wav"
+    subprocess.call(['aplay', file])
+
 gun = Gun(trigger_bin,ir_blaster_pin)
 
-
+print("Starting...")
 if __name__ == "__main__":
     while True:
             gun.main_loop()
             # time.sleep(bit_delay * len(encoded_message) )
-
-
-        benczech@DESKTOP-F0ODB0E:~$ git config --global user.name "benczech212"                                                 benczech@DESKTOP-F0ODB0E:~$ git config --global user.email benczech212@gmail.com                                        benczech@DESKTOP-F0ODB0E:~$                                                                                                                                 
