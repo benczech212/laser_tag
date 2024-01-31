@@ -175,6 +175,8 @@ class Gun:
 
     def fire(self):
         print("Firing")
+        threading.Thread(target=play_sound).start()
+        
         self.fire_ready = False
         firing_message = self.get_firing_message()
         self.message_encoder.blast_ir_message(firing_message)
@@ -188,7 +190,8 @@ class Gun:
             
 def play_sound():
     # use command sudo aplay "$file" to play sound
-    file = "sounds/shot.wav"
+    file = "Sounds/Start Up.wav"
+    
     subprocess.call(['aplay', file])
 
 gun = Gun(trigger_bin,ir_blaster_pin)
